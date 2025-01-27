@@ -13,7 +13,7 @@ class Vector
 public:
 	Vector();
 
-	void push_back(Node<T>* node);
+	void push_back(T value);
 	void size();
 	void begin();
 	void operator[](int);
@@ -21,20 +21,30 @@ public:
 };
 
 template <typename T>
-
 Vector<T>::Vector()
 {
-	begin = end = nullptr;
+	begin = nullptr;
+	end = nullptr;
 }
 
 template <typename T>
-
-void Vector<T>::push_back(Node<T>* node)
+void Vector<T>::push_back(T value)
 {
-
+	if (begin == nullptr) {
+		begin = new Node<T>{ value };
+		end = new Node<T>{};
+		begin->next = end;
+		end->prev = begin;
+	} else {
+		Node<T> t = new Node<T>{ value };
+		t->prev = end->prev;
+		t->next = end;
+		end->prev->next = t;
+		end->prev = t;
+	}
 }
-template <typename T>
 
+template <typename T>
 void Vector<T>::size()
 {
 

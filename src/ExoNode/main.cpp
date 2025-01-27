@@ -37,13 +37,16 @@ int main()
 	Iterator i = { &n1 };
 
 	++i;
-	std::cout << i.operator*() << std::endl;
+	std::cout << *i << std::endl;
 
 	i += 2;
 	std::cout << i.operator*() << std::endl;
 
 	i--;
 	std::cout << i.operator*() << std::endl;
+
+	vector d;
+	d[1]
 
 	return 0;
 }
