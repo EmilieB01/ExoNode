@@ -3,6 +3,7 @@
 #include "Node.hpp"
 #include "Iterator.hpp"
 #include <iostream>
+#include "Vector.hpp"
 
 int main()
 {
@@ -42,11 +43,15 @@ int main()
 	i += 2;
 	std::cout << i.operator*() << std::endl;
 
-	i--;
+	--i;
 	std::cout << i.operator*() << std::endl;
 
-	vector d;
-	d[1]
+	Vector<int> d;
+	d.push_back(10);
+	d.push_back(20);
+	d.push_back(30);
+
+	std::cout<<d[1];
 
 	return 0;
 }

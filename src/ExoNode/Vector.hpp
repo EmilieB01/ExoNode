@@ -8,21 +8,22 @@ class Vector
 {
 	Node<T>* begin;
 	Node<T>* end;
-	Iterator i;
+	int count;
 
 public:
 	Vector();
 
 	void push_back(T value);
-	void size();
-	void begin();
-	void operator[](int);
+	int size() const;
+	Iterator<T> Getbegin() const;
+	T operator[](int index) const;
 
 };
 
 template <typename T>
 Vector<T>::Vector()
 {
+	size = 0;
 	begin = nullptr;
 	end = nullptr;
 }
@@ -30,24 +31,43 @@ Vector<T>::Vector()
 template <typename T>
 void Vector<T>::push_back(T value)
 {
-	if (begin == nullptr) {
+	if (begin == nullptr) 
+	{
 		begin = new Node<T>{ value };
 		end = new Node<T>{};
 		begin->next = end;
 		end->prev = begin;
-	} else {
+	} 
+	else 
+	{
+
 		Node<T> t = new Node<T>{ value };
 		t->prev = end->prev;
 		t->next = end;
 		end->prev->next = t;
 		end->prev = t;
-	}
+	}		
+
+	count++;
 }
 
 template <typename T>
-void Vector<T>::size()
+int Vector<T>::size() const
 {
-
+	return count;
 }
 
+template <typename T>
+Iterator<T> Vector<T>::Getbegin() const
+{
+	return Iterator<T>(begin);
+}
 
+template <typename T>
+T Vector<T>::operator[](int index) const
+{
+	Iterator<T> it = begin();
+	it += index;
+
+	return *it;
+}
